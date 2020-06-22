@@ -21,7 +21,7 @@ class toDoForm(forms.ModelForm):
             'date_due': forms.DateInput(
     				attrs={
     					'class': 'form-control',
-                        'placeholder': 'Enter item due date YYYY-MM-DD'
+                        'placeholder': 'Enter item due date (YYYY-MM-DD)'
     					}
     				),
             'category': forms.TextInput(
