@@ -1,0 +1,44 @@
+{% extends "attendance_manager/base.html" %}
+{% block body %}
+  <div class="col-3 card mt-5 ml-3">
+    <div class="card-body">
+      <div class="card-title"><h4>Course Details</h4></div>
+      <div class="card-text">
+          <p>{{thisCourse.code}}: {{thisCourse.title}}</p>
+          <p>Classes: {{thisCourse.classes}}</p>
+          <p>Classes attended: {{thisCourse.classesAttended}}</p>
+          <p>Classes missed: {{thisCourse.classesMissed}}</p>
+          <p>Percentage: {{thisCourse.calculatePercentage}}</p>
+          <a type="submit" class="btn btn-primary mt-3" href="add">Add attended</a>
+          <a type="submit" class="btn btn-primary mt-3" href="miss">Add missed</a>
+          <a type="submit" class="btn btn-primary mt-3" href="reset">Reset attendance</a>
+          <a type="submit" class="btn btn-primary mt-3" href="delete">Delete course</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 card mt-5 ml-3">
+    <div class="card-body">
+      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    </div>
+  </div>
+</div>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	data: [{
+		type: "doughnut",
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+    explodeOnClick: false,
+		dataPoints: [
+			{ y: {{thisCourse.classesAttended}}, label: "Attended",exploded: false },
+			{ y: {{thisCourse.classesMissed}}, label: "Missed",exploded: false },
+		]
+	}]
+});
+chart.render();
+}
+</script>
+{% endblock body %}

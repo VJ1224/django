@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport">
+    <title>Attendance Manager</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+    <!-- My CSS stylesheet -->
+    <link href="{% static 'attendance_manager/main.css' %}" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="container-fluid row">
+      <nav class="nav flex-column nav-pills ml-3 mt-3 col-3">
+          <h4 class="nav-item mb-3">Attendance Manager: {{user}}</h4>
+          <a class="nav-link active" href="/attendance/">Dashboard</a>
+          {% for course in courses %}
+            <a class="nav-link active" href="/attendance/course/{{course.pk}}">{{course.code}}</a>
+          {% endfor %}
+          {% if user.is_authenticated %}
+          <a class="nav-link active sign" href="/logout">Sign Out</a>
+          {% else %}
+          <a class="nav-link active sign" href="/login">Login</a>
+          {% endif %}
+        </ul>
+      </nav>
+    {% block body %}{% endblock body%}
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

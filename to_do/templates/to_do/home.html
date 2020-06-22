@@ -1,0 +1,78 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport">
+    <title>To Do</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+    <!-- My CSS stylesheet -->
+    <link href="{% static 'to_do/main.css' %}" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="fluid-container ml-3 mt-3 row">
+      <h1>{{user}}'s To-Do list: {{today}} </h1>
+      <div align="right" class="ml-5 mt-2">
+        <a class="btn btn-primary" role="button" href="/todo/additem">Add Item</a>
+        {% if user.is_authenticated %}
+        <a class="btn btn-danger" href="/logout">Sign Out</a>
+        {% else %}
+        <a class="btn btn-danger" href="/login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="fluid-container ml-3 mt-3 row">
+      <div class="card col-5 mr-3 p-3 mt-3" id="additem" style="display:none">
+      <form action="additem" method="post">
+        {% csrf_token %}
+        <p> Date Format: YYYY-MM-DD </p>
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+          <label class="mr-3">{{field.label_tag}}</label>
+          {{field}}
+        </div>
+        {% endfor %}
+         <div class="form-group col-3">
+           <button type="submit" class="btn btn-primary">Add</button>
+         </div>
+      </form>
+      </div>
+      {% for thing in things %}
+      <div class="card col-2 mr-3 p-3 mt-3 mb-3">
+        {% if thing.done == True %}<strike>{% endif %}
+        <h4 class="card-title">{{thing.title}}</h4>
+        <h6 class="card-subtitle mb-3 text-muted">{{thing.category}}</h6>
+        <p class="card-text">Due: {{thing.date_due}}</p>
+        {% if thing.description != "" %}
+          <p class="card-text">Description: {{thing.description}}</p>
+        {% endif %}
+        {% if thing.done != True %}
+          <a href="/todo/done/{{thing.pk}}" class="btn btn-primary">Mark as Done</a>
+        {% endif %}
+        {% if thing.done == True %}
+          </strike>
+          <a href="/todo/undo/{{thing.pk}}" class="btn btn-primary mt-3">Undo</a>
+          <a href="/todo/delete/{{thing.pk}}" class="btn btn-primary mt-3">Delete</a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <script type="text/javascript">
+      if(window.location.href.indexOf("additem") > -1) {
+        document.getElementById("additem").style.display="block";
+      }
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

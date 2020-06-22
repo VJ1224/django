@@ -1,0 +1,49 @@
+{% extends "attendance_manager/base.html" %}
+{% block body %}
+  <div class="col-4 card mt-5 ml-3">
+    <div class="card-body">
+      <div class="card-title"><h4>Courses</h4></div>
+      <div class="card-text">
+        {% for course in courses %}
+          <p>{{course.code}}: {{course.title}}</p>
+        {% endfor %}
+          <a type="submit" class="btn btn-primary mt-3" href="addcourse">Add course</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid row mt-5">
+  <div class="col-auto card mb-3" style="margin-left:344.3333px;">
+    <div class="card-body">
+      <div class="card-title"><h4>Attendance</h4></div>
+      <div class="card-text">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#overall">Overall</a>
+          </li>
+          {% for course in courses %}
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#{{course.code}}">{{course.code}}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="tab-content">
+          <div id="overall" class="tab-pane active mt-4 ml-3">
+                <p>Total classes: {{total}}</p>
+                <p>Total classes attended: {{attended}}</p>
+                <p>Overall perecentage: {{percentage}}</p>
+          </div>
+          {% for course in courses %}
+          <div id="{{course.code}}" class="tab-pane ml-3 mt-4 ">
+            <h5 class="mb-3">{{course.title}}</h5>
+            <p>Classes: {{course.classes}}</p>
+            <p>Attended: {{course.classesAttended}}</p>
+            <p>Percentage: {{course.calculatePercentage}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
