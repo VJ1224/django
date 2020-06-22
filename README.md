@@ -2,7 +2,7 @@
 
 All the projects I have created using the Django framework
 
-## Online Resume
+[Live](https://django-app-collections.herokuapp.com/)
 
 ## Attendance Manager
 
