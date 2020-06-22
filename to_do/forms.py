@@ -17,7 +17,6 @@ class toDoForm(forms.ModelForm):
 					}
 				),
             'date_due': forms.DateInput(
-                    format=('%d-%m-%Y'),
     				attrs={
     					'class': 'form-control'
     					}

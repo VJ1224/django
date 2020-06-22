@@ -33,9 +33,9 @@
       <div class="card col-5 mr-3 p-3 mt-3" id="additem" style="display:none">
       <form action="additem" method="post">
         {% csrf_token %}
-        <p> Date Format: YYYY-MM-DD </p>
         {% for field in form.visible_fields %}
         <div class="form-group">
+          {% if field.}
           <label class="mr-3">{{field.label_tag}}</label>
           {{field}}
         </div>
