@@ -35,7 +35,6 @@
         {% csrf_token %}
         {% for field in form.visible_fields %}
         <div class="form-group">
-          {% if field.}
           <label class="mr-3">{{field.label_tag}}</label>
           {{field}}
         </div>
