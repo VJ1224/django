@@ -1,8 +1,8 @@
-# Collection of Django/Python apps
+# Collection of Django apps
 
-All the projects I have created using the Django framework
+All the projects I have created using the Django framework in Python
 
-[Live](https://django-app-collections.herokuapp.com/)
+[Live](https://django-apps-vj.herokuapp.com/)
 
 ## Attendance Manager
 
