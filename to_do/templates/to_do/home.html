@@ -33,6 +33,17 @@
       <div class="card col-5 mr-3 p-3 mt-3" id="additem" style="display:none">
       <form action="additem" method="post">
         {% csrf_token %}
+        {% if form.errors %}
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {% for field in form %}
+           {% if field.errors %}
+           <p><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</p>
+           <hr>
+           {% endif %}
+          {% endfor %}
+          </div>
+          {% endif %}
         {% for field in form.visible_fields %}
         <div class="form-group">
           <label class="mr-3">{{field.label_tag}}</label>

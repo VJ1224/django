@@ -1,6 +1,8 @@
-from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.template import RequestContext
 from django.contrib import messages
 from .forms import UserRegisterForm
 
@@ -11,6 +13,7 @@ def register(request):
         if(form.is_valid()):
             form.save()
             return HttpResponseRedirect("/login")
+        return render(request,'users/register.html',{'form': form})
     else:
         form = UserRegisterForm()
 

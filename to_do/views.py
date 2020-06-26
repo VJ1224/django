@@ -29,10 +29,12 @@ def additem(request):
 
     if request.method == 'POST':
         form = toDoForm(request.POST)
+        context['form'] = form
         if form.is_valid():
             form.instance.user=request.user
             form.save()
-        return HttpResponseRedirect("/todo")
+            return HttpResponseRedirect("/todo")
+        return render(request,"to_do/home.html",context)
     return render(request,"to_do/home.html",context)
 
 @login_required
