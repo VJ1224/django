@@ -17,7 +17,13 @@
     </head>
 
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
+          {% if registered %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <p>Your account has been created.</p>
+            </div>
+          {% endif %}
           <h4 class="nav-item mb-3 mt-3">Sign Up</h4>
           <form method="post">
             {% csrf_token %}
