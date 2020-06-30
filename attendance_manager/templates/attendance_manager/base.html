@@ -25,6 +25,7 @@
           {% for course in courses %}
             <a class="nav-link active" href="/attendance/course/{{course.pk}}">{{course.code}}</a>
           {% endfor %}
+          <a class="nav-link active sign" href ="/">Home</a>
           {% if user.is_authenticated %}
           <a class="nav-link active sign" href="/logout">Sign Out</a>
           {% else %}
