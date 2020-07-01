@@ -37,7 +37,7 @@ ALLOWED_HOSTS = ['.herokuapp.com']
 
 INSTALLED_APPS = [
     "attendance_manager.apps.AttendanceManagerConfig",
-    "resume.apps.ResumeConfig",
+    "home.apps.HomeConfig",
     "to_do.apps.ToDoConfig",
     "users.apps.UsersConfig",
     'django.contrib.admin',

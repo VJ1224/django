@@ -19,7 +19,7 @@ from django.urls import path,include
 from users import views as user_views
 
 urlpatterns = [
-    path('',include("resume.urls")),
+    path('',include("home.urls")),
     path('admin/', admin.site.urls),
     path("attendance/",include("attendance_manager.urls")),
     path("todo/",include("to_do.urls")),
