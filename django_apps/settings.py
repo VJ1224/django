@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     "attendance_manager.apps.AttendanceManagerConfig",
     "home.apps.HomeConfig",
     "to_do.apps.ToDoConfig",
