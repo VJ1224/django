@@ -7,4 +7,4 @@ urlpatterns = [
     path("done/<int:key>", views.markDone, name="todo-done"),
     path("undo/<int:key>", views.undo, name="todo-undo"),
     path("delete/<int:key>", views.deleteItem, name="todo-delete"),
-    ]
+]
