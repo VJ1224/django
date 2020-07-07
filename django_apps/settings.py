@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-if 'YES' in os.environ['IS_HEROKU']:   
+if 'IS_HEROKU' in os.environ:   
     import django_heroku
     django_heroku.settings(locals())
 
