@@ -1,0 +1,28 @@
+{% extends "resume_builder/base.html" %}
+{% block body %}
+<h1 class="m-3">Resume Builder</h1>
+<p class="m-3">Enter the data below:</p>
+<form class="m-5" action="/resume/" method="post">
+  {% csrf_token %}
+  {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {% for field in form %}
+    {% if field.errors %}
+    <p><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</p>
+    <hr>
+    {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+  {% for field in form.visible_fields %}
+  <div class="form-group">
+    <label class="mr-3">{{field.label_tag}}</label>
+    {{field}}
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+{% endblock body %}

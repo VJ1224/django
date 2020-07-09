@@ -31,7 +31,7 @@ else:
     DEBUG = False
 # Not working with False, figure out why
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "attendance_manager.apps.AttendanceManagerConfig",
     "home.apps.HomeConfig",
     "to_do.apps.ToDoConfig",
+    "resume_builder.apps.ResumeBuilderConfig",
     "users.apps.UsersConfig",
     'django.contrib.admin',
     'django.contrib.auth',

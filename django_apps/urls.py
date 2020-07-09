@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include("home.urls")),
     path('admin/', admin.site.urls),
     path("attendance/", include("attendance_manager.urls")),
+    path("resume/", include("resume_builder.urls")),
     path("todo/", include("to_do.urls")),
     path("register/", user_views.register),
     path("login/", auth_views.LoginView.as_view(template_name='users/login.html'), name='logout'),  # noqa

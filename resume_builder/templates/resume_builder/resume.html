@@ -1,0 +1,22 @@
+{% extends "resume_builder/base.html" %}
+{% block body %}
+<h2 class="m-3 float-left">{{ resume.name }}</h2>
+<p class="float-right m-1 mt-4">{{ resume.number }}</p>
+<p class="float-right mt-4">{{ resume.email }} |</p>
+<br><br><hr>
+<h5 class="m-3">Education</h5>
+<p class="m-3">{{ resume.education|linebreaksbr }}</p>
+<hr>
+<h5 class="m-3">Experience</h5>
+<p class="m-3">{{ resume.work|linebreaksbr }}</p>
+<hr>
+<h5 class="m-3">Skills</h5>
+<p class="m-3">{{ resume.skills|linebreaksbr }}</p>
+<input type="button" class="btn btn-primary ml-3" value="Save" onclick="savePDF()"/>
+<script>
+    function savePDF() {
+        window.print();
+        window.location.replace("/resume/save/?id={{resume.id}}");
+    }
+</script>
+{% endblock body %}
