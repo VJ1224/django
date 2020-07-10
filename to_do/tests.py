@@ -12,7 +12,7 @@ class ViewsTestCase(TestCase):
         self.client = Client()
         logged_in = self.client.login(username='testuser', password='12345')
 
-    def test_toDoHome(self):
+    def test_home(self):
         """Checks if homepage of To-Do list is loading"""
         response = self.client.get('/todo/')
         self.assertEqual(response.status_code,200)
