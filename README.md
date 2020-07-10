@@ -7,3 +7,5 @@ All the projects I have created using the Django framework in Python
 ## Attendance Manager
 
 ## To-Do List
+
+## Resume Builder
