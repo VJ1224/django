@@ -18,8 +18,8 @@ def home(request):
             query = urlencode({'data': form.cleaned_data})
             url = '{}?{}'.format('build/',query)
             return HttpResponseRedirect(url)
-        return render(request, "resume_builder/home.html", context)
-    return render(request, "resume_builder/home.html", context)
+        return render(request, "resume_builder/resume.html", context)
+    return render(request, "resume_builder/resume.html", context)
 
 def build(request):
     data = request.GET['data']
@@ -27,4 +27,4 @@ def build(request):
     context = {
         'resume': resume
     }
-    return render(request, "resume_builder/resume.html", context)
+    return render(request, "resume_builder/build.html", context)
