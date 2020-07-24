@@ -45,3 +45,5 @@ Pipeline:
 2. Build and run tests using Travis CI
 
 3. Deploy build to Heroku
+
+[Live](https://django-apps-vj.herokuapp.com/)
