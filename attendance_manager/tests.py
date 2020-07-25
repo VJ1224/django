@@ -24,6 +24,12 @@ class FormsTestCase(TestCase):
         form = courseForm(data=form_data)
         self.assertTrue(form.is_valid())
 
+    def test_addItem_false(self):
+        """Checks invalid form"""
+        form_data = {'code': 'CS101'}
+        form = courseForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
 class ModelsTestCase(TestCase):
     def test_item_create(self):
         """Checks Course creation"""

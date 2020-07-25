@@ -21,12 +21,18 @@ class FormsTestCase(TestCase):
     def test_addItem_true(self):
         """Checks valid form"""
         form_data = {'title': 'Testing', 'category':'Work',
-            'date_due':'2020-08-01', 'description':'Testing true'}
+            'date_due':'2020-08-01'}
         form = toDoForm(data=form_data)
         self.assertTrue(form.is_valid())
 
     def test_addItem_false(self):
-        """Checks invalid form"""
+        """Checks valid form"""
+        form_data = {'title': 'Testing', 'date_due':'2020-08-01', 'description':'Testing true'}
+        form = toDoForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_addItem_date(self):
+        """Checks invalid date format"""
         form_data = {'title': 'Testing', 'category':'Work',
             'date_due':'01-08-2020', 'description':'Testing false'}
         form = toDoForm(data=form_data)

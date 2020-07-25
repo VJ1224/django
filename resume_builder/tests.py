@@ -22,6 +22,12 @@ class FormsTestCase(TestCase):
         form = resumeForm(data=form_data)
         self.assertFalse(form.is_valid())
 
+    def test_addItem_email(self):
+        """Checks invalid email"""
+        form_data = {'name': 'Test', 'email':'test.com', 'number':'123456890'}
+        form = resumeForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
 class ModelsTestCase(TestCase):
     def test_item_create(self):
         """Checks resume creation"""
