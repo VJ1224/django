@@ -20,6 +20,7 @@ class toDoForm(forms.ModelForm):
             'description': forms.Textarea(
                 attrs={
                     'class': 'form-control',
+                    'rows': 3
                 }
             ),
             'date_due': forms.DateInput(

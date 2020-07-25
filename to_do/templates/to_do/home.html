@@ -20,7 +20,7 @@
   <body>
     <div class="fluid-container ml-3 mt-3 row">
       <h1>{{user}}'s To-Do list: {{today}} </h1>
-      <div align="right" class="ml-5 mt-2">
+      <div class="ml-5 mt-2 float-right">
         <a class="btn btn-primary" role="button" href="/todo/additem">Add Item</a>
         <a class="btn btn-danger" href ="/">Home</a>
         {% if user.is_authenticated %}
@@ -30,34 +30,36 @@
         {% endif %}
       </div>
     </div>
-    <div class="fluid-container ml-3 mt-3 row">
-      <div class="card col-5 mr-3 p-3 mt-3" id="additem" style="display:none">
-      <form action="additem" method="post">
-        {% csrf_token %}
-        {% if form.errors %}
-          <div class="alert alert-danger alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          {% for field in form %}
-           {% if field.errors %}
-           <p><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</p>
-           <hr>
-           {% endif %}
-          {% endfor %}
-          </div>
+
+    <div class="card ml-3 mt-3 mr-3 p-3" id="additem" style="display:none">
+    <form action="additem" method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {% for field in form %}
+          {% if field.errors %}
+          <p><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</p>
+          <hr>
           {% endif %}
-        {% for field in form.visible_fields %}
-        <div class="form-group">
-          <label class="mr-3">{{field.label_tag}}</label>
-          {{field}}
-        </div>
         {% endfor %}
-         <div class="form-group col-3">
-           <button type="submit" class="btn btn-primary">Add</button>
-         </div>
-      </form>
+        </div>
+        {% endif %}
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label class="mr-3">{{field.label_tag}}</label>
+        {{field}}
       </div>
+      {% endfor %}
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+    </div>
+      
+    <div class="ml-3 mt-3 row">
       {% for thing in things %}
-      <div class="card col-2 mr-3 p-3 mt-3 mb-3">
+      <div class="card mr-3 p-3 mt-3">
         {% if thing.done == True %}<strike>{% endif %}
         <h4 class="card-title">{{thing.title}}</h4>
         <h6 class="card-subtitle mb-3 text-muted">{{thing.category}}</h6>
@@ -76,9 +78,10 @@
       </div>
       {% endfor %}
     </div>
+    
     <script type="text/javascript">
       if(window.location.href.indexOf("additem") > -1) {
-        document.getElementById("additem").style.display="block";
+        document.getElementById("additem").style.display="inline-block";
       }
     </script>
     <!-- Bootstrap JS -->
