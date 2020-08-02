@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv # noqa
 if 'IS_HEROKU' in os.environ:
     import django_heroku
+else:
+    load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +34,7 @@ else:
     DEBUG = False
 # Not working with False, figure out why
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
