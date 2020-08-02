@@ -24,6 +24,8 @@ def register(request):
                 'admin@{{request.get_host}}.com',
                 [context['form'].cleaned_data.get('email')]
             )
+        else:
+            return render(request, 'users/register.html', context)
 
     context['form'] = UserRegisterForm()
     return render(request, 'users/register.html', context)

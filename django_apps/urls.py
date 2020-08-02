@@ -25,7 +25,7 @@ urlpatterns = [
     path("resume/", include("resume_builder.urls")),
     path("todo/", include("to_do.urls")),
     path("register/", user_views.register),
-    path("login/", auth_views.LoginView.as_view(template_name='users/login.html'), name='logout'),  # noqa
+    path("login/", auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),  # noqa
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),  # noqa
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='users/password_reset.html'), name='password_reset'),
