@@ -26,8 +26,8 @@ def getMissed(username):
 def calculatePercentage(username):
     total = getTotal(username)
     attended = getAttended(username)
-    if(total != 0):
-        percentage = "{0:.1f}".format(100*attended/(total))+"%"
+    if total != 0:
+        percentage = "{0:.1f}".format(100 * attended / total) + "%"
     else:
         percentage = "%"
     return percentage
@@ -49,82 +49,72 @@ def home(request):
 
 @login_required
 def course(request, key):
-    try:
-        course = Course.objects.get(id=key)
-        user = getattr(course, 'user')
-        if(user == request.user):
-            username = request.user
-            context = {
-                'courses': Course.objects.filter(user=username),
-                'thisCourse': Course.objects.get(id=key),
-            }
-            return render(request, "attendance_manager/course.html", context)
-        else:
-            return HttpResponseRedirect("/attendance/")
-    except Exception:
+    course = Course.objects.get(id=key)
+    user = getattr(course, 'user')
+
+    if user == request.user:
+        username = request.user
+        context = {
+            'courses': Course.objects.filter(user=username),
+            'thisCourse': Course.objects.get(id=key),
+        }
+        return render(request, "attendance_manager/course.html", context)
+    else:
         return HttpResponseRedirect("/attendance/")
 
 
 @login_required
 def attended(request, key):
-    try:
+    course = Course.objects.get(id=key)
+    user = getattr(course, 'user')
+
+    if user == request.user:
         course = Course.objects.get(id=key)
-        user = getattr(course, 'user')
-        if(user == request.user):
-            course = Course.objects.get(id=key)
-            course.addAttended
-            course.save()
-            return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
-        else:
-            return HttpResponseRedirect("/attendance/")
-    except Exception:
+        course.addAttended
+        course.save()
+        return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
+    else:
         return HttpResponseRedirect("/attendance/")
 
 
 @login_required
 def missed(request, key):
-    try:
+    course = Course.objects.get(id=key)
+    user = getattr(course, 'user')
+
+    if user == request.user:
         course = Course.objects.get(id=key)
-        user = getattr(course, 'user')
-        if(user == request.user):
-            course = Course.objects.get(id=key)
-            course.addMissed
-            course.save()
-            return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
-        else:
-            return HttpResponseRedirect("/attendance/")
-    except Exception:
+        course.addMissed
+        course.save()
+        return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
+    else:
         return HttpResponseRedirect("/attendance/")
 
 
 @login_required
 def delete(request, key):
-    try:
-        course = Course.objects.get(id=key)
-        user = getattr(course, 'user')
-        if(user == request.user):
-            instance = Course.objects.get(id=key)
-            instance.delete()
-            return HttpResponseRedirect("/attendance/")
-        else:
-            return HttpResponseRedirect("/attendance/")
-    except Exception:
+    course = Course.objects.get(id=key)
+    user = getattr(course, 'user')
+
+    if user == request.user:
+        instance = Course.objects.get(id=key)
+        instance.delete()
+        return HttpResponseRedirect("/attendance/")
+    else:
         return HttpResponseRedirect("/attendance/")
 
 
 @login_required
 def reset(request, key):
-    try:
+    course = Course.objects.get(id=key)
+    user = getattr(course, 'user')
+
+    if user == request.user:
         course = Course.objects.get(id=key)
-        user = getattr(course, 'user')
-        if(user == request.user):
-            course = Course.objects.get(id=key)
-            course.reset
-            course.save()
-            return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
-        else:
-            return HttpResponseRedirect("/attendance/")
-    except Exception:
+        course.reset
+        course.save()
+        return HttpResponseRedirect("/attendance/course/"+str(key)+"/")
+    else:
         return HttpResponseRedirect("/attendance/")
 
 

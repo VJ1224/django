@@ -1,9 +1,6 @@
-from django.shortcuts import redirect, render
-from django.http import HttpResponseRedirect, request
-from .models import resume
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .forms import resumeForm
-from django.utils.http import urlencode
-import ast
 
 
 # Create your views here.
@@ -12,6 +9,7 @@ def home(request):
         'form': resumeForm()
     }
     return render(request, "resume_builder/resume.html", context)
+
 
 def build(request):
     if request.method == 'POST':

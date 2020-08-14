@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from to_do.forms import toDoForm
 from to_do.models import toDoItem
 
+
 class ViewsTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create(username='testuser')
@@ -15,31 +16,34 @@ class ViewsTestCase(TestCase):
     def test_home(self):
         """Checks if homepage of To-Do list is loading"""
         response = self.client.get('/todo/')
-        self.assertEqual(response.status_code,200)
-    
+        self.assertEqual(response.status_code, 200)
+
+
 class FormsTestCase(TestCase):
     def test_addItem_true(self):
         """Checks valid form"""
-        form_data = {'title': 'Testing', 'category':'Work',
-            'date_due':'2020-08-01'}
+        form_data = {'title': 'Testing', 'category': 'Work',
+                     'date_due': '2020-08-01'}
         form = toDoForm(data=form_data)
         self.assertTrue(form.is_valid())
 
     def test_addItem_false(self):
         """Checks valid form"""
-        form_data = {'title': 'Testing', 'date_due':'2020-08-01', 'description':'Testing true'}
+        form_data = {'title': 'Testing', 'date_due': '2020-08-01', 'description': 'Testing true'}
         form = toDoForm(data=form_data)
         self.assertFalse(form.is_valid())
 
     def test_addItem_date(self):
         """Checks invalid date format"""
-        form_data = {'title': 'Testing', 'category':'Work',
-            'date_due':'01-08-2020', 'description':'Testing false'}
+        form_data = {'title': 'Testing', 'category': 'Work',
+                     'date_due': '01-08-2020', 'description': 'Testing false'}
         form = toDoForm(data=form_data)
         self.assertFalse(form.is_valid())
+
 
 class ModelsTestCase(TestCase):
     def test_item_create(self):
         """Checks toDoItem creation"""
-        item = toDoItem.objects.create(title="Test",category="Work",date_due="2020-08-01",description="Testing testing")
-        self.assertTrue(isinstance(item,toDoItem))
+        item = toDoItem.objects.create(title="Test", category="Work", date_due="2020-08-01",
+                                       description="Testing testing")
+        self.assertTrue(isinstance(item, toDoItem))

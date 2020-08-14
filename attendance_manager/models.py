@@ -20,7 +20,7 @@ class Course(models.Model):
 
     @property
     def calculatePercentage(self):
-        if(self.classes != 0):
+        if self.classes != 0:
             return "{0:.1f}".format(100*self.classesAttended/(self.classes))+"%"  # noqa
         else:
             return "%"

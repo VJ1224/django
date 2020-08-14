@@ -12,7 +12,7 @@ def register(request):
     }
     if request.method == 'POST':
         context['form'] = UserRegisterForm(request.POST)
-        if(context['form'].is_valid()):
+        if context['form'].is_valid():
             context['form'].save()
             context['registered'] = True
             subject = 'Welcome to ' + request.get_host()

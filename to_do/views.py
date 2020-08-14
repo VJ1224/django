@@ -40,40 +40,31 @@ def additem(request):
 
 @login_required
 def markDone(request, key):
-    try:
+    item = toDoItem.objects.get(id=key)
+    user = getattr(item, 'user')
+    if user == request.user:
         item = toDoItem.objects.get(id=key)
-        user = getattr(item, 'user')
-        if(user == request.user):
-            item = toDoItem.objects.get(id=key)
-            item.markDone
-            item.save()
-        return HttpResponseRedirect("/todo")
-    except Exception:
-        return HttpResponseRedirect("/todo")
+        item.markDone
+        item.save()
+    return HttpResponseRedirect("/todo")
 
 
 @login_required
 def deleteItem(request, key):
-    try:
+    item = toDoItem.objects.get(id=key)
+    user = getattr(item, 'user')
+    if user == request.user:
         item = toDoItem.objects.get(id=key)
-        user = getattr(item, 'user')
-        if(user == request.user):
-            item = toDoItem.objects.get(id=key)
-            item.delete()
-        return HttpResponseRedirect("/todo")
-    except Exception:
-        return HttpResponseRedirect("/todo")
+        item.delete()
+    return HttpResponseRedirect("/todo")
 
 
 @login_required
 def undo(request, key):
-    try:
+    item = toDoItem.objects.get(id=key)
+    user = getattr(item, 'user')
+    if user == request.user:
         item = toDoItem.objects.get(id=key)
-        user = getattr(item, 'user')
-        if(user == request.user):
-            item = toDoItem.objects.get(id=key)
-            item.undo
-            item.save()
-        return HttpResponseRedirect("/todo")
-    except Exception:
-        return HttpResponseRedirect("/todo")
+        item.undo
+        item.save()
+    return HttpResponseRedirect("/todo")
