@@ -1,6 +1,6 @@
-# Collection of Django apps
+# Study Planner
 
-All the projects I have created using the Django framework in Python
+A collection of web apps to help plan your work.
 
 ## Projects
 
