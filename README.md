@@ -46,4 +46,4 @@ Pipeline:
 
 3. Deploy build to Heroku
 
-[Live](https://django-apps-vj.herokuapp.com/)
+[Live](https://study-planner-vj.herokuapp.com/)
